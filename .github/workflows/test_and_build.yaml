@@ -27,4 +27,4 @@ jobs:
         pip install -r src/requirements.txt
     - name: Test with pytest
       run: |
-        source venv/bin/python -m pytest src/tests.py
+        venv/bin/python -m pytest src/tests.py
