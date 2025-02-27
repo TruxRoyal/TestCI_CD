@@ -29,7 +29,20 @@ jobs:
     - name: check linting
       run: |
         venv/bin/python -m ruff check .
-        
+
     - name: Test with pytest
       run: |
         venv/bin/python -m pytest src/tests.py
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        push: true
+        tags: ghcr.io/TruxRoyal/TestCI_CD:latest
