@@ -25,6 +25,11 @@ jobs:
         source venv/bin/activate
         pip install --upgrade pip
         pip install -r src/requirements.txt
+
+    - name: check linting
+      run: |
+        venv/bin/python -m ruff check .
+        
     - name: Test with pytest
       run: |
         venv/bin/python -m pytest src/tests.py
