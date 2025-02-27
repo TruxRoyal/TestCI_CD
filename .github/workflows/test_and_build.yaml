@@ -13,12 +13,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.13
-      uses: actions/setup-python@v3
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
       with:
-        python-version: "3.13"
-    - name: Install dependencies
-      run: pip install -r src/requirements.txt
+        python-version: "3.11"
+
+    - name: Install dependencies in virtual environment
+      run: |
+        python -m venv venv
+        venv\Scripts\activate
+        pip install -r src/requirements.txt
     - name: Test with pytest
       working-directory: src
-      run: pytest tests.py
+      run: |
+        venv\Scripts\activate
+        pytest tests.py
