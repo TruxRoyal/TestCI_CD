@@ -46,4 +46,4 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: ghcr.io/TruxRoyal/testci_cd:latest
+        tags: ghcr.io/truxroyal/testci_cd:latest
